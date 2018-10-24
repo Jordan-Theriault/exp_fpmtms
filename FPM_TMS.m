@@ -199,7 +199,7 @@ squareY3 = yCenter*1.4;
 
 squareSelect = 1; % 1 = Fact, 2 = Preference, 3 = Moral
 trial.ratestart = GetSecs;
-while 1
+while squareSelect < 4
     % Check the keyboard to see if a button has been pressed
     [keyIsDown,secs, keyCode] = KbCheck;
 
@@ -263,10 +263,13 @@ while 1
         Screen('FillRect', window, 255, centeredRectP);
         Screen('FillRect', window, 255, centeredRectM);
     elseif squareSelect == 2
+        Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
         Screen('FillRect', window, 255, centeredRectF);
         Screen('FillRect', window, 127.5, centeredRectP);
         Screen('FillRect', window, 255, centeredRectM);
     elseif squareSelect == 3
+        Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+        Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5);     
         Screen('FillRect', window, 255, centeredRectF);
         Screen('FillRect', window, 255, centeredRectP);
         Screen('FillRect', window, 127.5, centeredRectM);
@@ -287,7 +290,7 @@ while 1
 %             squareSelect = 1;
 %         end
      if keyCode(key.left)
-        WaitSecs(.005);
+%         WaitSecs(.005);
         if squareSelect == 1
             squareX1 = squareX1 - pixelsPerPress;
         elseif squareSelect == 2
@@ -296,7 +299,7 @@ while 1
             squareX3 = squareX3 - pixelsPerPress;
         end
      elseif keyCode(key.right)
-        WaitSecs(.005);
+%         WaitSecs(.005);
         if squareSelect == 1
             squareX1 = squareX1 + pixelsPerPress;
         elseif squareSelect == 2
@@ -337,15 +340,24 @@ while 1
         Screen('FillRect', window, 255, centeredRectM);
         % draw confirmation border
         if squareSelect == 1
-            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 16, screenXpixels*(2/3)+20, squareY1 + 16], 5); 
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+            Screen('Flip', window);            
+        elseif squareSelect == 2
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5); 
+            Screen('Flip', window);  
+        elseif squareSelect == 3
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5); 
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY3 - 20, screenXpixels*(2/3)+20, squareY3 + 20], 5); 
+            Screen('Flip', window);  
         end
-        Screen('Flip', window);
-        % wait a moment.
-        WaitSecs(.5);
-        break
+        WaitSecs(.25)
+        squareSelect = squareSelect + 1;
      end
 end
 
+Screen('Flip', window);
 DrawFormattedText(window, text.inst4, 'center', textY, 255, param.wrap);
 DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
 Screen('Flip', window);
