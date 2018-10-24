@@ -287,6 +287,7 @@ while 1
             squareSelect = 1;
         end
      elseif keyCode(key.left)
+        WaitSecs(.02);
         if squareSelect == 1
             squareX1 = squareX1 - pixelsPerPress;
         elseif squareSelect == 2
@@ -295,6 +296,7 @@ while 1
             squareX3 = squareX3 - pixelsPerPress;
         end
      elseif keyCode(key.right)
+        WaitSecs(.02);
         if squareSelect == 1
             squareX1 = squareX1 + pixelsPerPress;
         elseif squareSelect == 2
@@ -495,6 +497,7 @@ for xx=1:param.trials_per_run
                 squareSelect = 1;
             end
          elseif keyCode(key.left)
+            WaitSecs(.02);
             if squareSelect == 1
                 squareX1 = squareX1 - pixelsPerPress;
                 output.resp1_RT(xx) = GetSecs - trial.ratestart;
@@ -518,6 +521,7 @@ for xx=1:param.trials_per_run
                 yy = yy+1;
             end
          elseif keyCode(key.right)
+            WaitSecs(.02);
             if squareSelect == 1
                 squareX1 = squareX1 + pixelsPerPress;
                 output.resp1_RT(xx) = GetSecs - trial.ratestart;
