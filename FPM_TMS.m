@@ -5,13 +5,13 @@ Screen('Preference','VisualDebugLevel', 0);
 Screen('Preference','Verbosity', 0);
 rng('shuffle')
 %% Directories
-rootdir = '~/Desktop/FPM_TMS/experiment';
+rootdir = '~/projects/FPM_TMS/experiment';
 behavdir = fullfile(rootdir, 'behavioral');
 % stimdir = fullfile(rootdir, 'stimuli');
 outputdir = fullfile(rootdir, 'output');
 %% Load design
 cd(behavdir)
-temp.subj_design = dir(['design_sub-' num2str(subjID) '*']);
+temp.subj_design = dir(['design_sub-' sprintf('%02d', subjID) '*']);
 assert(numel(temp.subj_design) == 1, 'multiple (or zero) files returned for subjID. Check /behavioral folder.');
 load(temp.subj_design.name)
 
@@ -274,20 +274,20 @@ while 1
     Screen('Flip', window);
 
     % Depending on the button press, move ths position of the square
-    if keyCode(key.down)
-        squareSelect = squareSelect + 1;
-        WaitSecs(.2);
-        if squareSelect > 3 % go no higher than 3 (moral)
-            squareSelect = 3;
-        end
-    elseif keyCode(key.up)
-        squareSelect = squareSelect - 1;
-        WaitSecs(.2);
-        if squareSelect < 1 % go no lower than 1 (fact)
-            squareSelect = 1;
-        end
-     elseif keyCode(key.left)
-        WaitSecs(.02);
+%     if keyCode(key.down)
+%         squareSelect = squareSelect + 1;
+%         WaitSecs(.2);
+%         if squareSelect > 3 % go no higher than 3 (moral)
+%             squareSelect = 3;
+%         end
+%     elseif keyCode(key.up)
+%         squareSelect = squareSelect - 1;
+%         WaitSecs(.2);
+%         if squareSelect < 1 % go no lower than 1 (fact)
+%             squareSelect = 1;
+%         end
+     if keyCode(key.left)
+        WaitSecs(.005);
         if squareSelect == 1
             squareX1 = squareX1 - pixelsPerPress;
         elseif squareSelect == 2
@@ -296,7 +296,7 @@ while 1
             squareX3 = squareX3 - pixelsPerPress;
         end
      elseif keyCode(key.right)
-        WaitSecs(.02);
+        WaitSecs(.005);
         if squareSelect == 1
             squareX1 = squareX1 + pixelsPerPress;
         elseif squareSelect == 2
@@ -336,7 +336,9 @@ while 1
         Screen('FillRect', window, 255, centeredRectP);
         Screen('FillRect', window, 255, centeredRectM);
         % draw confirmation border
-        Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY3+20], 5); 
+        if squareSelect == 1
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 16, screenXpixels*(2/3)+20, squareY1 + 16], 5); 
+        end
         Screen('Flip', window);
         % wait a moment.
         WaitSecs(.5);
@@ -599,19 +601,19 @@ for xx=1:param.trials_per_run
     
     Screen('Flip',window);
     Screen('Flip',window);
-    save(['data_sub-' subjID '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.mat'],'acq','subjID', 'output', 'design')
+    save(['data_sub-' sprintf('%02d', subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.mat'],'acq','subjID', 'output', 'design')
 end
 % save .mat
 runDur = GetSecs - runStart;
-save(['data_sub-' subjID '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.mat'],'acq','subjID', 'output', 'dynamicoutput', 'design', 'runDur')
+save(['data_sub-' sprintf('%02d', subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.mat'],'acq','subjID', 'output', 'dynamicoutput', 'design', 'runDur')
 % save .csv
 output_table = struct2table(output);
 cd(outputdir)
-writetable(output_table, ['data_sub-' num2str(subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.tsv'], 'FileType', 'text', 'Delimiter', '\t');
+writetable(output_table, ['data_sub-' sprintf('%02d', subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.tsv'], 'FileType', 'text', 'Delimiter', '\t');
 
 output_table = struct2table(dynamicoutput);
 cd(outputdir)
-writetable(output_table, ['DYNAMICdata_sub-' num2str(subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.tsv'], 'FileType', 'text', 'Delimiter', '\t');
+writetable(output_table, ['DYNAMICdata_sub-' sprintf('%02d', subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.tsv'], 'FileType', 'text', 'Delimiter', '\t');
 
 cd(rootdir)
 
