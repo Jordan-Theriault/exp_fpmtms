@@ -1,0 +1,95 @@
+subjID	acq	trial	stim_id	stim_pair	stim_text	mrl_prf	pos_no_con	trial_onset	read_RT	resp1_cat	resp2_cat	resp3_cat	resp1_RT	resp2_RT	resp3_RT	respAll_RT	resp1	resp2	resp3
+1	1	1	001	000	February has the fewest days of all months.	fact	fact	0.0198381330001212	1.71840427200004	abt_pref	abt_morl	abt_fact	9.69365550500061	4.69125930900009	3.17383528600021	10.7942159260001	0	0	100
+1	1	2	002	000	The Earth is smaller than the Sun.	fact	fact	13.075782549	1.23811918499996	abt_pref	abt_morl	abt_fact	10.9259575549995	6.22250650799924	3.5877023590001	NaN	NaN	NaN	NaN
+1	1	NaN	058	032	It is wrong to knowingly buy sandals made using sweatshop labor.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	149	093	Professors should not tolerate students cheating on their exams.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	053	004	Killing grey wolves is wrong, even if they are overpopulated.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	118	072	Students should get a good night sleep before a makeup final exam.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	046	074	People should sit close to the stage for a theatre performance.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	146	071	The goal of sports should be to teach children that respect for others is more important than winning.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	022	078	In winter, people should wear button-down coats and scarfs.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	066	031	Restaurant owners should evenly distribute tips among waiters.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	003	007	Hearing both sides of an argument makes for stimulating discussion.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	132	008	People should sit near the window in a restaurant.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	090	080	People should not write in borrowed books.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	039	013	People should not talk on their phones in a public bathroom.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	183	017	Doctors should not refuse to treat sick patients.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	097	023	Learning through the internet is more interesting than visiting a library.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	173	052	A tattoo artist should get a verbal consent from customers.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	035	051	Watching movies with friends is enjoyable.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	100	022	Afterschool programs involving sports are more fun than most of the alternatives available to children.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	052	091	We should stop developing robots, as they will destroy jobs.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	161	022	Taxi drivers should not rip off tourists.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	055	049	It is wrong to cheat when playing games such as Monopoly.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	067	048	People should not spit on the streets.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	144	044	You shouldn't embarrass or humiliate your friends.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	011	066	In the wintertime, it is fun to catch snowflakes on the tip of your tongue.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	096	048	Stomach cancer is the worst disease you can have.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	141	071	People who torture their pets are vile.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	165	087	Zookeepers should keep safe and clean environments for animals.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	164	069	Students should not copy a classmate's answer sheet on a makeup final exam.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	110	073	Having blood drawn is not a pleasurable experience.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	084	039	Students should not have loud conversations during lectures.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	157	067	It is justifiable to harm cockroaches just because you find them disgusting.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	049	039	Controversial speakers should be allowed to speak at colleges.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	045	080	Students should familiarize themselves with many Philosophy texts.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	025	001	Employees should always dress professionally.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	124	058	On a plane, people should not stand up as soon as the seat-belt sign goes off.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	095	061	Dogs make better pets than lizards.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	070	053	Students should not skip classes.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	021	070	People should walk to their work.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	082	055	Teachers should not shame students for falling asleep in class.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	115	046	A taxi driver should play soothing music when picking up a customer.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	179	019	People should not litter in the beach.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	076	073	A public pool should leave lifeguarding duties to parents.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	044	068	People should borrow textbooks from the library.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	087	083	House owners should not enforce water-usage limits to their tenants.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	160	033	A car recall is the only acceptable option when a safety risk is found.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	127	059	A tattoo artist should have many original tattoo designs.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	064	011	Dog racing is harmful and exploitative to the dogs being raced.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	050	065	Children should not put their parents into nursing homes.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	148	045	It is irresponsible for airlines to risk the safety of their passengers.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	081	009	Watching movies from illegal websites is deplorable.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	041	056	House owners should decorate their rooms with string lights.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	114	036	A car recall is inconvenient for people with long commutes.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	174	085	Parents should give medication to their sick children.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	028	037	A mother should make peanut butter jelly sandwich for lunch.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	026	053	Money spent on space project is wasteful.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	133	029	People should pack food for a beach day.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	031	034	Using straws to drink is much more enjoyable than drinking directly from the cup.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	120	077	Teenagers should make sure to exercise at least once per day.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	077	067	Using straws is harmful to the environment.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	015	016	Rock music is pleasing to the ear, and much more agreeable than rap music.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	158	016	Gamblers should not bet their children's college funds.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	152	041	It is not OK for doctors to accidentally kill a small number of patients per year.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	117	050	After a game, athletes should Instagram post about the game results.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	139	033	Politicians should dress casually when going out for family dinner.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	010	024	The Harry Potter books are engaging and delightful to read, even for adults.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	019	076	Gazing at planets through a telescope is a satisfying activity.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	112	005	Gamblers should bet with real money, as it is more exciting.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	181	081	Children should not take all the Halloween candies for themselves.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	151	028	The deplorable conditions of Chinese electronics workers should not be ignored.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	108	042	While at a hot beach, it is pleasant to dip your toes in the cool water.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	113	090	Children should learn how to play an instrument.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	018	065	Dogs are not worth the stress and aggravation it takes to own them.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	074	091	A mother should allow her children the freedom to pursue their own interests.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	131	018	Women should wear white wedding dresses.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	129	026	People should have workplace fire drills in the morning.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	056	001	Harry Potter should be banned from school libraries for idolizing witchcraft.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	136	029	Soccer fans should shout football chants during home games.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	059	086	Good Americans buy American cars, such as Hummers.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	166	010	Teenagers who bully their classmates should be scolded.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	034	064	Teachers should visit their students' houses regularly.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	089	068	In a cafe, people should clean after themselves.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	145	042	Toxic plastics should not be used in children's markers.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	024	008	Students should take classes outside their comfort zones.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	167	007	A married couple should not have an affair.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	116	011	Supermarkets should sell a variety of different cereal brands.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	169	087	A football referee should not help his favored team win.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	009	063	Many games are better than Monopoly, which is incredibly boring.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	027	019	Parents should pack ramen for lunch on a rainy day.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	013	026	Nothing is more awesome than driving in a Hummer.	prf	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	093	020	Smokers should not smoke close to animals.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	171	025	Churchgoers should donate generously to the collection plate.	mrl	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	137	002	Doctors should accept cash, check, or credit card for payment.	prf	poscon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	1	NaN	079	089	Runners should not bump into pedestrians in the street.	mrl	nocon	NaN	NaN	abt_pref	abt_morl	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN

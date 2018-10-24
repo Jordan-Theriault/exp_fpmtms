@@ -1,0 +1,1 @@
+Employees should never fake sick day.

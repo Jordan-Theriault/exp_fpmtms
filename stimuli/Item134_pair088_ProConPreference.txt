@@ -1,0 +1,1 @@
+Employees should have an extra copy of their resume for an interview.
