@@ -263,7 +263,7 @@ if mod(subjNum, 2) % if subjNum is odd, randomize order.
     
 else % if subjNum is even, grab previous subject's data.
     cd (behavdir);
-    temp.prev_subj = dir(['design_sub-' num2str(subjNum-1) '*']);
+    temp.prev_subj = dir(['design_sub-' sprintf('%02d', subjNum-1) '*']);
     assert(numel(temp.prev_subj) == 1, 'multiple (or zero) files returned for subjNum - 1.');
     load(temp.prev_subj.name)
     
@@ -293,8 +293,8 @@ design.q_text = design.q_text(seed);
 cd (behavdir)
 subjID = subjNum;
 param.time_date = datestr(now, 'mm-dd-yyyy_HH-MM');
-assert(isempty(dir(['design_sub-' num2str(subjNum) '*'])), 'Subject already exists. Check /behavioral')
-save(['design_sub-' num2str(subjNum) '_task-FPMTMS_' 'date-' param.time_date '.mat'], 'subjID', 'stim', 'design', 'param')
+assert(isempty(dir(['design_sub-' sprintf('%02d', subjNum) '*'])), 'Subject already exists. Check /behavioral')
+save(['design_sub-' sprintf('%02d', subjNum) '_task-FPMTMS_' 'date-' param.time_date '.mat'], 'subjID', 'stim', 'design', 'param')
 cd (rootdir)
 
 end
