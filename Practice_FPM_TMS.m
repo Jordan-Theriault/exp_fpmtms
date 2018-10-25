@@ -21,6 +21,8 @@ param.big = 40; %big font size
 param.small = 24; %font size for ratings
 param.wordsize = 72; %font size for word, shown with image.
 
+param.notimetrials = 6; % number of trials before time limits are enforced.
+
 % time and date for output file
 param.time_date = datestr(now, 'mm-dd-yyyy_HH-MM');
 
@@ -64,12 +66,12 @@ text.inst3 = ['When you are done reading, three scales will appear below the sta
     '\n\n\n To confirm your answer, press <SPACE>.' ...
     '\n\n\n After confirming, you will answer the next question down.' ...
     '\n\n We will show you an example next.'];
-text.inst4 = ['If you take more than ', num2str(param.max_trial_len), ' seconds to provide an answer, then the experiment will advance on its own.' ...
+text.inst4 = ['In the real experiment, if you take more than ', num2str(param.max_trial_len), ' seconds to provide an answer then the experiment will advance on its own.' ...
     '\n\n\n So please answer as quickly as you can.'];
 text.example = 'A circle is round.';
-text.notime = ['First, we will let you practice without any time limits.' ...
+text.notime = ['First however, we will let you practice without any time limits.' ...
     '\n\n\n Take as long as you like to give your ratings for the next few statements.'];
-text.wtime = ['Next, we will have you practice with ', num2str(param.max_trial_len), ' second time limit.' ...
+text.wtime = ['Next, we will have you practice with the ', num2str(param.max_trial_len), ' second time limit.' ...
     '\n\n\n Please try to answer as quickly as you can.'];
 %Text
 text.rating = 'To what degree is this statement...';
@@ -368,30 +370,281 @@ while 1 %wait for someone to press 'space'
 end
 
 % No time limit screen.
-DrawFormattedText(window, text.notime, 'center', 'center', 255, param.wrap);
+DrawFormattedText(window, text.notime, 'center', textY, 255, param.wrap);
+DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
 Screen('Flip',window);
 WaitSecs(.5);
+
+%% Trigger
 while 1 %wait for someone to press 'space'
     [keyIsDown,secs, keyCode] = KbCheck;
     if keyCode(key.space)
         Screen('Flip', window);
-        break
-    end
-end
-
-%% Trigger
-while 1 %wait for someone to press '='
-    FlushEvents;
-    trig = GetChar;
-    if trig == '='
         runStart = GetSecs; %experiment start time.
         break
     end
 end
-Screen('Flip', window);
 cd(behavdir)
-%% Rating Screens
-for xx=1:param.trials_per_run
+%% Rating Screens - No time Limit
+for xx=1:param.notimetrials
+% for xx=1:2 % debug
+    trial.start = GetSecs;
+    output.trial_onset(xx) = GetSecs - runStart;
+    output.trial(xx) = xx;
+   
+    %trial info
+    trial.text = output.stim_text(xx); % Read Text.
+    % present statement
+    Screen('TextSize', window, param.big);
+    DrawFormattedText(window, char(trial.text), 'center', textY, 255, param.wrap); % put text 1/3 up screen
+    DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
+    Screen('Flip',window, 0, 1);   
+    WaitSecs(.5);
+
+    while 1
+        [keyIsDown,secs, keyCode] = KbCheck;
+        if keyIsDown == 1 && keyCode(key.space) 
+            output.read_RT(xx) = GetSecs - trial.start;
+            break
+        end
+    end
+    
+    % positions
+    squareX1 = xCenter;
+    squareX2 = xCenter;
+    squareX3 = xCenter;
+    squareY1 = yCenter;
+    squareY2 = yCenter*1.2;
+    squareY3 = yCenter*1.4;
+
+    squareSelect = 1; % 1 = Fact, 2 = Preference, 3 = Moral
+    trial.ratestart = GetSecs;
+    yy = 1; % dynamicoutput row marker
+    while squareSelect < 4
+        % Check the keyboard to see if a button has been pressed
+        [keyIsDown,secs, keyCode] = KbCheck;
+
+        Screen('TextSize', window, param.small);
+
+        %this draws the text
+        Screen('TextSize', window, param.big);
+        DrawFormattedText(window, char(trial.text), 'center', textY, 255, param.wrap); 
+        DrawFormattedText(window, text.rating, 'center', rateY, 255, param.wrap);
+        DrawFormattedText(window, text.scale, 'centerblock', scaleY, 255);
+        % ratings
+        DrawFormattedText(window, text.rate1, screenXpixels*(1/14), squareY1, 255);
+        DrawFormattedText(window, text.rate2, screenXpixels*(1/14), squareY2, 255);
+        DrawFormattedText(window, text.rate3, screenXpixels*(1/14), squareY3, 255);
+        % confirm
+        DrawFormattedText(window, text.space_confirm,'center', spaceY, 255);
+
+        % We set bounds to make sure our square stays within rating line
+        if squareX1 < screenXpixels*(1/3)
+            squareX1 = screenXpixels*(1/3);
+        elseif squareX1 > screenXpixels*(2/3)
+            squareX1 = screenXpixels*(2/3);
+        end
+
+        if squareX2 < screenXpixels*(1/3)
+            squareX2 = screenXpixels*(1/3);
+        elseif squareX2 > screenXpixels*(2/3)
+            squareX2 = screenXpixels*(2/3);
+        end
+
+        if squareX3 < screenXpixels*(1/3)
+            squareX3 = screenXpixels*(1/3);
+        elseif squareX3 > screenXpixels*(2/3)
+            squareX3 = screenXpixels*(2/3);
+        end
+
+        %this draws the line
+        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY1, screenXpixels*(2/3), squareY1, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY1+10, screenXpixels*(1/3), squareY1-10, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY1+10, screenXpixels*(2/3), squareY1-10, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY1+10, screenXpixels*(1/2), squareY1-10, 5);
+
+        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY2, screenXpixels*(2/3), squareY2, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY2+10, screenXpixels*(1/3), squareY2-10, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY2+10, screenXpixels*(2/3), squareY2-10, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY2+10, screenXpixels*(1/2), squareY2-10, 5);
+
+        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY3, screenXpixels*(2/3), squareY3, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY3+10, screenXpixels*(1/3), squareY3-10, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY3+10, screenXpixels*(2/3), squareY3-10, 5);
+        Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY3+10, screenXpixels*(1/2), squareY3-10, 5);
+
+       % This draws the cursor
+        centeredRectF = CenterRectOnPointd(baseRect, squareX1, squareY1);
+        centeredRectP = CenterRectOnPointd(baseRect, squareX2, squareY2);
+        centeredRectM = CenterRectOnPointd(baseRect, squareX3, squareY3);
+
+        % select answer
+        if squareSelect == 1
+            Screen('FillRect', window, 127.5, centeredRectF);
+            Screen('FillRect', window, 255, centeredRectP);
+            Screen('FillRect', window, 255, centeredRectM);
+        elseif squareSelect == 2
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+            Screen('FillRect', window, 255, centeredRectF);
+            Screen('FillRect', window, 127.5, centeredRectP);
+            Screen('FillRect', window, 255, centeredRectM);
+        elseif squareSelect == 3
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5);     
+            Screen('FillRect', window, 255, centeredRectF);
+            Screen('FillRect', window, 255, centeredRectP);
+            Screen('FillRect', window, 127.5, centeredRectM);
+        end
+        Screen('Flip', window);
+        
+        % Depending on the button press, move ths position of the square
+%         if keyCode(key.down)
+%             squareSelect = squareSelect + 1;
+%             WaitSecs(.2);
+%             if squareSelect > 3 % go no higher than 3 (moral)
+%                 squareSelect = 3;
+%             end
+%         elseif keyCode(key.up)
+%             squareSelect = squareSelect - 1;
+%             WaitSecs(.2);
+%             if squareSelect < 1 % go no lower than 1 (fact)
+%                 squareSelect = 1;
+%             end
+         if keyCode(key.left)
+            if squareSelect == 1
+                squareX1 = squareX1 - pixelsPerPress;
+                output.resp1_RT(xx) = GetSecs - trial.ratestart;
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
+                dynamicoutput.resp(yy,xx) = (squareX1-screenXpixels*(1/3))/screen_range*100;
+                dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
+                yy = yy+1;
+            elseif squareSelect == 2
+                squareX2 = squareX2 - pixelsPerPress;
+                output.resp2_RT(xx) = GetSecs - trial.ratestart;
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
+                dynamicoutput.resp(yy,xx) = (squareX2-screenXpixels*(1/3))/screen_range*100;
+                dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
+                yy = yy+1;
+            elseif squareSelect == 3
+                squareX3 = squareX3 - pixelsPerPress;
+                output.resp3_RT(xx) = GetSecs - trial.ratestart;
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
+                dynamicoutput.resp(yy,xx) = (squareX3-screenXpixels*(1/3))/screen_range*100;
+                dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
+                yy = yy+1;
+            end
+         elseif keyCode(key.right)
+            if squareSelect == 1
+                squareX1 = squareX1 + pixelsPerPress;
+                output.resp1_RT(xx) = GetSecs - trial.ratestart;
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
+                dynamicoutput.resp(yy,xx) = (squareX1-screenXpixels*(1/3))/screen_range*100;
+                dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
+                yy = yy+1;
+            elseif squareSelect == 2
+                squareX2 = squareX2 + pixelsPerPress;
+                output.resp2_RT(xx) = GetSecs - trial.ratestart;
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
+                dynamicoutput.resp(yy,xx) = (squareX2-screenXpixels*(1/3))/screen_range*100;
+                dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
+                yy = yy+1;
+            elseif squareSelect == 3
+                squareX3 = squareX3 + pixelsPerPress;
+                output.resp3_RT(xx) = GetSecs - trial.ratestart;
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
+                dynamicoutput.resp(yy,xx) = (squareX3-screenXpixels*(1/3))/screen_range*100;
+                dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
+                yy = yy+1;
+            end
+         elseif keyCode(key.space) && (GetSecs - trial.ratestart > .5)
+            % text
+            Screen('TextSize', window, param.big);
+            DrawFormattedText(window, char(trial.text), 'center', textY, 255, param.wrap); % put text 1/3 up screen
+            DrawFormattedText(window, text.rating, 'center', rateY, 255, param.wrap);
+            DrawFormattedText(window, text.scale, 'centerblock', scaleY, 255);
+            DrawFormattedText(window, text.space_confirm,'center', spaceY, 255);
+            % ratings
+            DrawFormattedText(window, text.rate1, screenXpixels*(1/14), squareY1, 255);
+            DrawFormattedText(window, text.rate2, screenXpixels*(1/14), squareY2, 255);
+            DrawFormattedText(window, text.rate3, screenXpixels*(1/14), squareY3, 255);
+            % lines
+            Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY1, screenXpixels*(2/3), squareY1, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY1+10, screenXpixels*(1/3), squareY1-10, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY1+10, screenXpixels*(2/3), squareY1-10, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY1+10, screenXpixels*(1/2), squareY1-10, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY2, screenXpixels*(2/3), squareY2, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY2+10, screenXpixels*(1/3), squareY2-10, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY2+10, screenXpixels*(2/3), squareY2-10, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY2+10, screenXpixels*(1/2), squareY2-10, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY3, screenXpixels*(2/3), squareY3, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY3+10, screenXpixels*(1/3), squareY3-10, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY3+10, screenXpixels*(2/3), squareY3-10, 5);
+            Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY3+10, screenXpixels*(1/2), squareY3-10, 5);
+            % cursor
+            centeredRectF = CenterRectOnPointd(baseRect, squareX1, squareY1);
+            centeredRectP = CenterRectOnPointd(baseRect, squareX2, squareY2);
+            centeredRectM = CenterRectOnPointd(baseRect, squareX3, squareY3);
+            Screen('FillRect', window, 255, centeredRectF);
+            Screen('FillRect', window, 255, centeredRectP);
+            Screen('FillRect', window, 255, centeredRectM);
+            % draw confirmation border
+            if squareSelect == 1
+                Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+                output.resp1(xx) = (squareX1-screenXpixels*(1/3))/screen_range*100;
+                Screen('Flip', window);            
+            elseif squareSelect == 2
+                Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+                Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5); 
+                output.resp2(xx) = (squareX2-screenXpixels*(1/3))/screen_range*100;
+                Screen('Flip', window);  
+            elseif squareSelect == 3
+                Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
+                Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5); 
+                Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY3 - 20, screenXpixels*(2/3)+20, squareY3 + 20], 5); 
+                output.resp3(xx) = (squareX3-screenXpixels*(1/3))/screen_range*100;
+                output.respAll_RT(xx) = GetSecs - trial.ratestart;
+                Screen('Flip', window);  
+            end
+            % get output
+            WaitSecs(.25);
+            squareSelect = squareSelect + 1;
+         end
+    end           
+    
+    
+    if isnan(output.respAll_RT(xx))
+        Screen('Flip', window);
+        DrawFormattedText(window, text.timeout,'center', yCenter, 255);
+        Screen('Flip', window);
+        pause(1);
+    end
+    
+    Screen('Flip',window);
+    Screen('Flip',window);
+    save(['data_sub-' sprintf('%02d', subjID) '_practice_task-FPMTMS_' 'date-' param.time_date '.mat'],'subjID', 'output', 'pracdesign')
+end
+
+temp.start = xx+1;
+
+
+% Time limit screen.
+DrawFormattedText(window, text.wtime, 'center', 'center', 255, param.wrap);
+DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
+Screen('Flip',window);
+WaitSecs(.5);
+
+%% Trigger
+while 1 %wait for someone to press 'space'
+    [keyIsDown,secs, keyCode] = KbCheck;
+    if keyCode(key.space)
+        Screen('Flip', window);
+        runStart = GetSecs; %experiment start time.
+        break
+    end
+end
+
+%% Rating Screens - WITH time Limit
+for xx=temp.start:param.prac_num
 % for xx=1:2 % debug
     trial.start = GetSecs;
     output.trial_onset(xx) = GetSecs - runStart;
@@ -628,6 +881,7 @@ for xx=1:param.trials_per_run
     Screen('Flip',window);
     save(['data_sub-' sprintf('%02d', subjID) '_practice_task-FPMTMS_' 'date-' param.time_date '.mat'],'subjID', 'output', 'pracdesign')
 end
+
 % save .mat
 runDur = GetSecs - runStart;
 save(['data_sub-' sprintf('%02d', subjID) '_practice_task-FPMTMS_' 'date-' param.time_date '.mat'],'subjID', 'output', 'dynamicoutput', 'pracdesign', 'runDur')
