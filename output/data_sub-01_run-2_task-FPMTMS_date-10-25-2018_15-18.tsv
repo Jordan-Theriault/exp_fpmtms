@@ -1,0 +1,75 @@
+subjID	acq	trial	stim_id	stim_pair	stim_text	mrl_prf	pos_no_con	trial_onset	read_RT	resp1_cat	resp2_cat	resp3_cat	resp1_RT	resp2_RT	resp3_RT	respAll_RT	resp1	resp2	resp3
+1	2	1	001	000	February has the fewest days of all months.	fact	fact	0.0126028090016916	0.533441777006374	abt_morl	abt_pref	abt_fact	0.6298986870097	NaN	NaN	1.30935664300341	88.0000000000001	50	50
+1	2	2	002	000	The Earth is smaller than the Sun.	fact	fact	2.15667638900049	0.523098673002096	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.12591105900356	50	50	50
+1	2	3	122	029	School is a place for children to have fun with their friends.	prf	poscon	4.10314374200243	0.510430681009893	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.1531238900061	50	50	50
+1	2	4	031	032	Using straws to drink is much more enjoyable than drinking directly from the cup.	prf	nocon	6.07041175699851	0.509068425992155	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.14341294499172	50	50	50
+1	2	5	104	009	Having a drink every now and then is a good way to relax.	prf	poscon	8.0213639470021	0.511977715999819	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.13230079000641	50	50	50
+1	2	6	166	012	Teenagers who bully their classmates should be scolded.	mrl	poscon	9.98113832499075	0.518103285998222	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	4.99616118099948	50	50	50
+1	2	7	051	015	Genetic engineers should prevent birth defects in babies.	mrl	nocon	15.7915559289977	0.510335443002987	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.10883712100622	50	50	50
+1	2	8	068	002	In winter, it is better to wake homeless people sleeping on the street than to ignore them.	mrl	nocon	17.7200630089937	0.532874492986593	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.14021234899701	50	50	50
+1	2	9	013	030	Nothing is more awesome than driving in a Hummer.	prf	nocon	19.6933773139899	0.509692997002276	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.13512055799947	50	50	50
+1	2	10	101	028	Babies that are temperamental are aggravating to spend time around.	prf	poscon	21.6583398999937	0.530552516996977	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.16962541600515	50	50	50
+1	2	11	162	014	Supermarkets should not pass of expired milk as fresh.	mrl	poscon	23.6672972840024	0.521807170007378	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.14329179300694	50	50	50
+1	2	12	063	021	Destroying the habitats of owls through deforestation is deplorable.	mrl	nocon	25.6379367049958	0.518685418006498	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.1661166230042	50	50	50
+1	2	13	017	024	The "hoots" of owls in the woods make camping more enjoyable.	prf	nocon	27.6418724669929	0.533488116998342	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.14050970799872	50	50	50
+1	2	14	109	006	Nothing is less appealing than the smell of rotting fish.	prf	poscon	29.6153094579931	0.509488057010458	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.12011650699424	50	50	50
+1	2	15	156	003	Universal donors should not be obligated to donate their blood.	mrl	poscon	31.549297835998	0.509321817997261	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.14944815299532	50	50	50
+1	2	16	037	020	People should listen to music during a mountain-hike.	prf	nocon	33.5245188169938	0.535841629985953	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.13700461501139	50	50	50
+1	2	17	035	011	Watching movies with friends is enjoyable.	prf	nocon	35.5018358840025	0.510714767005993	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.12034577899612	50	50	50
+1	2	18	130	026	People should stretch before every workout.	prf	poscon	37.4367151640035	0.527190118998988	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.14540709400899	50	50	50
+1	2	19	169	031	A football referee should not help his favored team win.	mrl	poscon	39.4281845509977	0.51845409499947	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15607281400298	50	50	50
+1	2	20	095	023	Dogs make better pets than lizards.	prf	poscon	41.4055540739937	0.526825609005755	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.12954876599542	50	50	50
+1	2	21	079	022	Runners should not bump into pedestrians in the street.	mrl	nocon	43.3807653559925	0.518399829990813	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.10755611800414	50	50	50
+1	2	22	170	013	People should leave priority seats vacant for pregnant women.	mrl	poscon	45.3151447779965	0.534251310993568	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.11499026999809	50	50	50
+1	2	23	078	009	An intern should not exaggerate about his participation in a project.	mrl	nocon	47.2740473140002	0.509631563007133	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.22236110799713	50	50	50
+1	2	24	096	029	Stomach cancer is the worst disease you can have.	prf	poscon	49.3083625639993	0.527127943001688	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.1421031570062	50	50	50
+1	2	25	057	035	People should help their elderly neighbors clear snow from their driveway.	mrl	nocon	51.2840776700032	0.518166926995036	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+1	2	26	158	020	Gamblers should not bet their children's college funds.	mrl	poscon	66.3688574859989	5.81843279000896	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.11860040099418	50	50	50
+1	2	27	127	031	A tattoo artist should have many original tattoo designs.	prf	poscon	73.6095445440005	0.521312686993042	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.12401168799261	50	50	50
+1	2	28	054	016	It is unethical for business to promote sugary products to children.	mrl	nocon	75.5615067859908	0.518851027998608	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.13898269599304	50	50	50
+1	2	29	076	019	A public pool should leave lifeguarding duties to parents.	mrl	nocon	77.5210901190003	0.51014239199867	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15990062100173	50	50	50
+1	2	30	027	024	Parents should pack ramen for lunch on a rainy day.	prf	nocon	79.5011942089914	0.53102730801038	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.10833674499008	50	50	50
+1	2	31	022	021	In winter, people should wear button-down coats and scarfs.	prf	nocon	81.4528420610004	0.531456069002161	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.11998643200786	50	50	50
+1	2	32	062	025	It is unjust for businesses to allow apples to rot rather than giving them to the needy.	mrl	nocon	83.4081714819913	0.525932737989933	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.16031329799443	50	50	50
+1	2	33	107	015	Drinking coffee is a joyful experience when you are tired and need energy.	prf	poscon	85.4003501819971	0.518024360004347	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.16031901800307	50	50	50
+1	2	34	165	018	Zookeepers should keep safe and clean environments for animals.	mrl	poscon	87.3831701659947	0.521500083996216	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.14158557499468	50	50	50
+1	2	35	015	033	Rock music is pleasing to the ear, and much more agreeable than rap music.	prf	nocon	89.3541632220004	0.687384499993641	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.2053773009975	50	50	50
+1	2	36	147	034	Parents should be wiling to make sacrifices for the benefit of their baby.	mrl	poscon	91.5442488010012	0.739039990003221	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.61575850199733	50	50	50
+1	2	37	150	011	Driving after drinking heavily is a stupid and selfish way to behave.	mrl	poscon	94.195718175004	0.63463790199603	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.35490075100097	50	50	50
+1	2	38	009	007	Many games are better than Monopoly, which is incredibly boring.	prf	nocon	96.4969335959904	0.549874853008077	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.35443709099491	50	50	50
+1	2	39	176	084	In a gym, people should wipe sweat off after equipment use.	mrl	poscon	98.69807278199	0.524783478002064	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.30026072300097	50	50	50
+1	2	40	125	051	Churchgoers should read the Bible in a book, not on their phones.	prf	poscon	100.832143551001	0.51057343800494	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.1442593630054	50	50	50
+1	2	41	100	061	Afterschool programs involving sports are more fun than most of the alternatives available to children.	prf	poscon	102.793070553991	0.533704496003338	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15397692199622	50	50	50
+1	2	42	126	073	People should check their bank accounts every month.	prf	poscon	104.79370614099	0.644164797005942	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.94863592699403	50	50	50
+1	2	43	167	069	A married couple should not have an affair.	mrl	poscon	107.685428411001	0.511209472999326	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.14366820099531	50	50	50
+1	2	44	026	070	Money spent on space project is wasteful.	prf	nocon	109.636414327993	0.510410236995085	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.16835426499892	50	50	50
+1	2	45	024	057	Students should take classes outside their comfort zones.	prf	nocon	111.630599748998	0.535156817000825	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15625749799074	50	50	50
+1	2	46	152	065	It is not OK for doctors to accidentally kill a small number of patients per year.	mrl	poscon	113.631496546004	0.534264870992047	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15962143799698	50	50	50
+1	2	47	121	059	A married couple should spend at least some time outdoors.	prf	poscon	115.634322703001	0.530755998988752	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.16002137299802	50	50	50
+1	2	48	077	076	Using straws is harmful to the environment.	mrl	nocon	117.623546228002	0.510018251996371	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.13788860700151	50	50	50
+1	2	49	072	077	Money earned illegally should be refused if offered by a friend.	mrl	nocon	119.584279693998	0.533601841001655	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.12541308200161	50	50	50
+1	2	50	148	063	It is irresponsible for airlines to risk the safety of their passengers.	mrl	poscon	121.542549142003	0.509730535006383	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.09238312499656	50	50	50
+1	2	51	128	074	People should not give too many snacks to their children before a meal.	prf	poscon	123.452983893992	0.533400336003979	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.27774188900366	50	50	50
+1	2	52	146	053	The goal of sports should be to teach children that respect for others is more important than winning.	mrl	poscon	125.560856504992	2.7052321129886	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.13946164600202	50	50	50
+1	2	53	144	054	You shouldn't embarrass or humiliate your friends.	mrl	poscon	129.72158312799	0.650395275006304	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	2.04590731200005	50	50	50
+1	2	54	074	072	A mother should allow her children the freedom to pursue their own interests.	mrl	nocon	132.724636701998	0.516281816002447	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.52603046399599	50	50	50
+1	2	55	154	055	Private beaches are not immoral, as everyone should be able to share the space.	mrl	poscon	135.071970876001	0.521016322003561	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15799144199991	50	50	50
+1	2	56	033	078	Runners should eat plenty of bananas before a marathon.	prf	nocon	137.060638493	0.515461852002773	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.12621163400763	50	50	50
+1	2	57	080	078	Teachers should penalize students who didn't contribute to group projects.	mrl	nocon	139.007793441997	0.51853782699618	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.17813390199444	50	50	50
+1	2	58	069	081	People should not sneak into movie theaters without paying.	mrl	nocon	141.009954936002	0.518199679994723	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15383369200572	50	50	50
+1	2	59	059	062	Good Americans buy American cars, such as Hummers.	mrl	nocon	142.986685811993	0.526128746001632	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.1410424039932	50	50	50
+1	2	60	123	049	A football referee should run as much as the athletes.	prf	poscon	144.963182537002	0.533393182995496	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.13931664600386	50	50	50
+1	2	61	020	084	Restaurant owners should train the waiters to check on a table at least twice.	prf	nocon	146.937179617002	0.562961199000711	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.12304460899031	50	50	50
+1	2	62	060	063	Eating fish is acceptable if they were treated humanely when caught or raised.	mrl	nocon	148.933144064998	0.533067266995204	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.16020469900104	50	50	50
+1	2	63	110	080	Having blood drawn is not a pleasurable experience.	prf	poscon	150.951767826991	0.553822817004402	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.27088108300813	50	50	50
+1	2	64	163	055	Athletes who fail to follow the doping code should be ousted.	mrl	poscon	153.073847799998	0.549554639001144	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15495912999904	50	50	50
+1	2	65	171	075	Churchgoers should donate generously to the collection plate.	mrl	poscon	155.080617468993	0.521883977999096	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.4604952219961	50	50	50
+1	2	66	011	076	In the wintertime, it is fun to catch snowflakes on the tip of your tongue.	prf	nocon	157.364353562996	0.520574686001055	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.68000331499206	50	50	50
+1	2	67	050	065	Children should not put their parents into nursing homes.	mrl	nocon	159.860628253999	0.527626634997432	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.25711071700789	50	50	50
+1	2	68	102	060	Going through airport security is an unpleasant experience.	prf	poscon	161.944386183997	0.510658009996405	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.1523862239992	50	50	50
+1	2	69	036	057	Teachers should arrange many interactive field trips.	prf	nocon	163.921344022994	0.534395538008539	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.13332191400696	50	50	50
+1	2	70	018	048	Dogs are not worth the stress and aggravation it takes to own them.	prf	nocon	165.898841346003	0.524757760998909	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.20737736200681	50	50	50
+1	2	71	071	079	Employees should never fake sick day.	mrl	nocon	167.930605693997	0.511816614001873	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.15793000200938	50	50	50
+1	2	72	112	054	Gamblers should bet with real money, as it is more exciting.	prf	poscon	169.911150615997	0.530848892012727	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	1.19196475399076	50	50	50
+1	2	73	023	053	People should watch more thought-provoking movies.	prf	nocon	171.941654975002	0.517724951991113	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	NaN	50	50	NaN
+1	2	74	021	074	People should walk to their work.	prf	nocon	187.023456259994	NaN	abt_morl	abt_pref	abt_fact	NaN	NaN	NaN	NaN	NaN	NaN	NaN

@@ -8,7 +8,7 @@ behavdir = fullfile(rootdir, 'behavioral');
 stimdir = fullfile(rootdir, 'stimuli');
 factdir = fullfile(rootdir, 'stim_facts');
 
-param.stim_num = 144; % Final value should be 144.
+param.stim_num = 184; % Final value should be 184.
 param.fact_num = 2; % two facts to begin each session.
 
 
@@ -263,38 +263,27 @@ if mod(subjNum, 2) % if subjNum is odd, randomize order.
     
 else % if subjNum is even, grab previous subject's data.
     cd (behavdir);
-    temp.prev_subj = dir(['design_sub-' sprintf('%02d', subjNum-1) '*']);
+    temp.prev_subj = dir(['design_sub-' num2str(subjNum-1) '*']);
     assert(numel(temp.prev_subj) == 1, 'multiple (or zero) files returned for subjNum - 1.');
     load(temp.prev_subj.name)
     
-    % Flip the design from the previous person. 
-    % NOTE - no longer doing this.
-%     design.stim_text = fliplr(design.stim_text);
-%     design.file = fliplr(design.file);
-%     design.stim_id = fliplr(design.stim_id);
-%     design.stim_pair = fliplr(design.stim_pair);
-%     design.mrl_prf = fliplr(design.mrl_prf);
-%     design.pos_no_con = fliplr(design.pos_no_con);
+    % Flip the design from the previous person.
+    design.stim_text = fliplr(design.stim_text);
+    design.file = fliplr(design.file);
+    design.stim_id = fliplr(design.stim_id);
+    design.stim_pair = fliplr(design.stim_pair);
+    design.mrl_prf = fliplr(design.mrl_prf);
+    design.pos_no_con = fliplr(design.pos_no_con);
     
 end
 
 clear temp
 
-%% Question Order
-design.q_order = cell(3,1);
-design.q_text = cell(3,1);
-design.q_order(:) = {'abt_fact', 'abt_morl', 'abt_pref'};
-design.q_text(:) = {'About Facts', 'About Morality', 'About Preferences'};
-seed = randperm(size(design.q_order,1));
-design.q_order = design.q_order(seed);
-design.q_text = design.q_text(seed);
-
 %% Save Behavioral File
 cd (behavdir)
 subjID = subjNum;
 param.time_date = datestr(now, 'mm-dd-yyyy_HH-MM');
-assert(isempty(dir(['design_sub-' sprintf('%02d', subjNum) '*'])), 'Subject already exists. Check /behavioral')
-save(['design_sub-' sprintf('%02d', subjNum) '_task-FPMTMS_' 'date-' param.time_date '.mat'], 'subjID', 'stim', 'design', 'param')
+save(['design_sub-' num2str(subjNum) '_task-FPMTMS_' 'date-' param.time_date '.mat'], 'subjID', 'stim', 'design', 'param')
 cd (rootdir)
 
 end
