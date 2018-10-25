@@ -1,5 +1,5 @@
 % must have psychtoolbox.
-function FPM_TMS(subjID, acq)
+function FPM_TMS(subjID)
 Screen('Preference', 'SkipSyncTests', 1); 
 Screen('Preference','VisualDebugLevel', 0);
 Screen('Preference','Verbosity', 0);
@@ -9,11 +9,11 @@ rootdir = '~/projects/FPM_TMS/experiment';
 behavdir = fullfile(rootdir, 'behavioral');
 % stimdir = fullfile(rootdir, 'stimuli');
 outputdir = fullfile(rootdir, 'output');
-%% Load design
+%% Load pracdesign
 cd(behavdir)
-temp.subj_design = dir(['design_sub-' sprintf('%02d', subjID) '*']);
-assert(numel(temp.subj_design) == 1, 'multiple (or zero) files returned for subjID. Check /behavioral folder.');
-load(temp.subj_design.name)
+temp.subj_pracdesign = dir(['design_sub-' sprintf('%02d', subjID) '*']);
+assert(numel(temp.subj_pracdesign) == 1, 'multiple (or zero) files returned for subjID. Check /behavioral folder.');
+load(temp.subj_pracdesign.name)
 
 %% Parameters
 param.wrap = 70; %new line after this many characters
@@ -25,23 +25,20 @@ param.wordsize = 72; %font size for word, shown with image.
 param.time_date = datestr(now, 'mm-dd-yyyy_HH-MM');
 
 param.max_trial_len = 14; % allow max 14 sec per trial
-% Other parameters are loaded from the Create_PA_scanner_design file. 
-param.trials_per_run = size(design.stim_text,1);
+% Other parameters are loaded from the Create_PA_scanner_pracdesign file. 
+param.trials_per_run = size(pracdesign.stim_text,1);
 %% Setup output
 
 output.subjID = cell(param.trials_per_run,1); output.subjID(:,1) = {subjID};
-output.acq = zeros(param.trials_per_run, 1); output.acq(:,1) = acq;
 output.trial = nan(param.trials_per_run, 1);
-output.stim_id = design.stim_id(:,acq);
-output.stim_pair = design.stim_pair(:,acq);
-output.stim_text = design.stim_text(:,acq);
-output.mrl_prf = design.mrl_prf(:,acq);
-output.pos_no_con = design.pos_no_con(:,acq);
+output.stim_id = pracdesign.stim_id(:,1);
+output.stim_text = pracdesign.stim_text(:,1);
+output.mrl_prf_fct = pracdesign.mrl_prf_fct(:,1);
 output.trial_onset = nan(param.trials_per_run, 1); %absoute onset, for modeling
 output.read_RT = nan(param.trials_per_run,1);
-output.resp1_cat = cell(param.trials_per_run,1); output.resp1_cat(:,1) = design.q_order(1);
-output.resp2_cat = cell(param.trials_per_run,1); output.resp2_cat(:,1) = design.q_order(2);
-output.resp3_cat = cell(param.trials_per_run,1); output.resp3_cat(:,1) = design.q_order(3);
+output.resp1_cat = cell(param.trials_per_run,1); output.resp1_cat(:,1) = pracdesign.q_order(1);
+output.resp2_cat = cell(param.trials_per_run,1); output.resp2_cat(:,1) = pracdesign.q_order(2);
+output.resp3_cat = cell(param.trials_per_run,1); output.resp3_cat(:,1) = pracdesign.q_order(3);
 output.resp1_RT = nan(param.trials_per_run,1);
 output.resp2_RT = nan(param.trials_per_run,1);
 output.resp3_RT = nan(param.trials_per_run,1);
@@ -58,7 +55,7 @@ dynamicoutput.time = zeros(1000,param.trials_per_run);
 % Instructions % 
 text.inst1 = ['You will read several statements.'...
     '\n\n\n For each, you will rate the degree that you think it is:' ...
-    '\n\n', design.q_text{1}, '\n\n', design.q_text{2}, '\n\n and \n\n', design.q_text{3}];
+    '\n\n', pracdesign.q_text{1}, '\n\n', pracdesign.q_text{2}, '\n\n and \n\n', pracdesign.q_text{3}];
 text.inst2 = ['First, the statement will appear on its own.'...
     '\n\n\n When you are done reading it, press <SPACE>' ...
     '\n\n\n We will show you an example next.'];
@@ -70,16 +67,15 @@ text.inst3 = ['When you are done reading, three scales will appear below the sta
 text.inst4 = ['If you take more than ', num2str(param.max_trial_len), ' seconds to provide an answer, then the experiment will advance on its own.' ...
     '\n\n\n So please answer as quickly as you can.'];
 text.example = 'A circle is round.';
-text.ready = ['Please remember:' ...
-    '\n\n\n Rate each item on how much you think it is' ...
-    '\n\n', design.q_text{1}, '\n\n', design.q_text{2}, '\n\n and \n\n', design.q_text{3} ...
-    '\n\n\n If you take more than ', num2str(param.max_trial_len), ' seconds to answer then the experiment will advance on its own.' ...
-    '\n\n\n We are now ready to begin stimulation. Please let the experimenter know that you are finished reading the instructions.'];
+text.notime = ['First, we will let you practice without any time limits.' ...
+    '\n\n\n Take as long as you like to give your ratings for the next few statements.'];
+text.wtime = ['Next, we will have you practice with ', num2str(param.max_trial_len), ' second time limit.' ...
+    '\n\n\n Please try to answer as quickly as you can.'];
 %Text
 text.rating = 'To what degree is this statement...';
-text.rate1 = [design.q_text{1}, '?']; % get About Fact, About Moral, About Preference Rating.
-text.rate2 = [design.q_text{2}, '?'];
-text.rate3 = [design.q_text{3}, '?'];
+text.rate1 = [pracdesign.q_text{1}, '?']; % get About Fact, About Moral, About Preference Rating.
+text.rate2 = [pracdesign.q_text{2}, '?'];
+text.rate3 = [pracdesign.q_text{3}, '?'];
 text.scale =  'Not at all                                            Completely';
 
 text.space_advance = 'Press <SPACE> to advance';
@@ -371,9 +367,17 @@ while 1 %wait for someone to press 'space'
     end
 end
 
-% Ready screen.
-DrawFormattedText(window, text.ready, 'center', 'center', 255, param.wrap);
+% No time limit screen.
+DrawFormattedText(window, text.notime, 'center', 'center', 255, param.wrap);
 Screen('Flip',window);
+WaitSecs(.5);
+while 1 %wait for someone to press 'space'
+    [keyIsDown,secs, keyCode] = KbCheck;
+    if keyCode(key.space)
+        Screen('Flip', window);
+        break
+    end
+end
 
 %% Trigger
 while 1 %wait for someone to press '='
@@ -515,21 +519,21 @@ for xx=1:param.trials_per_run
             if squareSelect == 1
                 squareX1 = squareX1 - pixelsPerPress;
                 output.resp1_RT(xx) = GetSecs - trial.ratestart;
-                dynamicoutput.cat(yy,xx) = design.q_order(squareSelect);
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
                 dynamicoutput.resp(yy,xx) = (squareX1-screenXpixels*(1/3))/screen_range*100;
                 dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
                 yy = yy+1;
             elseif squareSelect == 2
                 squareX2 = squareX2 - pixelsPerPress;
                 output.resp2_RT(xx) = GetSecs - trial.ratestart;
-                dynamicoutput.cat(yy,xx) = design.q_order(squareSelect);
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
                 dynamicoutput.resp(yy,xx) = (squareX2-screenXpixels*(1/3))/screen_range*100;
                 dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
                 yy = yy+1;
             elseif squareSelect == 3
                 squareX3 = squareX3 - pixelsPerPress;
                 output.resp3_RT(xx) = GetSecs - trial.ratestart;
-                dynamicoutput.cat(yy,xx) = design.q_order(squareSelect);
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
                 dynamicoutput.resp(yy,xx) = (squareX3-screenXpixels*(1/3))/screen_range*100;
                 dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
                 yy = yy+1;
@@ -538,21 +542,21 @@ for xx=1:param.trials_per_run
             if squareSelect == 1
                 squareX1 = squareX1 + pixelsPerPress;
                 output.resp1_RT(xx) = GetSecs - trial.ratestart;
-                dynamicoutput.cat(yy,xx) = design.q_order(squareSelect);
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
                 dynamicoutput.resp(yy,xx) = (squareX1-screenXpixels*(1/3))/screen_range*100;
                 dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
                 yy = yy+1;
             elseif squareSelect == 2
                 squareX2 = squareX2 + pixelsPerPress;
                 output.resp2_RT(xx) = GetSecs - trial.ratestart;
-                dynamicoutput.cat(yy,xx) = design.q_order(squareSelect);
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
                 dynamicoutput.resp(yy,xx) = (squareX2-screenXpixels*(1/3))/screen_range*100;
                 dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
                 yy = yy+1;
             elseif squareSelect == 3
                 squareX3 = squareX3 + pixelsPerPress;
                 output.resp3_RT(xx) = GetSecs - trial.ratestart;
-                dynamicoutput.cat(yy,xx) = design.q_order(squareSelect);
+                dynamicoutput.cat(yy,xx) = pracdesign.q_order(squareSelect);
                 dynamicoutput.resp(yy,xx) = (squareX3-screenXpixels*(1/3))/screen_range*100;
                 dynamicoutput.time(yy,xx) = GetSecs - trial.ratestart;
                 yy = yy+1;
@@ -622,19 +626,19 @@ for xx=1:param.trials_per_run
     
     Screen('Flip',window);
     Screen('Flip',window);
-    save(['data_sub-' sprintf('%02d', subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.mat'],'acq','subjID', 'output', 'design')
+    save(['data_sub-' sprintf('%02d', subjID) '_practice_task-FPMTMS_' 'date-' param.time_date '.mat'],'subjID', 'output', 'pracdesign')
 end
 % save .mat
 runDur = GetSecs - runStart;
-save(['data_sub-' sprintf('%02d', subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.mat'],'acq','subjID', 'output', 'dynamicoutput', 'design', 'runDur')
+save(['data_sub-' sprintf('%02d', subjID) '_practice_task-FPMTMS_' 'date-' param.time_date '.mat'],'subjID', 'output', 'dynamicoutput', 'pracdesign', 'runDur')
 % save .csv
 output_table = struct2table(output);
 cd(outputdir)
-writetable(output_table, ['data_sub-' sprintf('%02d', subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.tsv'], 'FileType', 'text', 'Delimiter', '\t');
+writetable(output_table, ['data_sub-' sprintf('%02d', subjID) '_practice_task-FPMTMS_' 'date-' param.time_date '.tsv'], 'FileType', 'text', 'Delimiter', '\t');
 
 output_table = struct2table(dynamicoutput);
 cd(outputdir)
-writetable(output_table, ['DYNAMICdata_sub-' sprintf('%02d', subjID) '_run-' num2str(acq) '_task-FPMTMS_' 'date-' param.time_date '.tsv'], 'FileType', 'text', 'Delimiter', '\t');
+writetable(output_table, ['DYNAMICdata_sub-' sprintf('%02d', subjID) '_practice_task-FPMTMS_' 'date-' param.time_date '.tsv'], 'FileType', 'text', 'Delimiter', '\t');
 
 cd(rootdir)
 

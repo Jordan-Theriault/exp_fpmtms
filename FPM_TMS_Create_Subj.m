@@ -7,10 +7,11 @@ rootdir = '~/projects/FPM_TMS/experiment';
 behavdir = fullfile(rootdir, 'behavioral');
 stimdir = fullfile(rootdir, 'stimuli');
 factdir = fullfile(rootdir, 'stim_facts');
+pracdir = fullfile(rootdir, 'practice/stimuli');
 
 param.stim_num = 144; % Final value should be 144.
 param.fact_num = 2; % two facts to begin each session.
-
+param.prac_num = 18; % number of practice stimuli.
 
 %% Get Stimuli
 
@@ -21,6 +22,12 @@ stim.stim_pair = cell(param.stim_num,1);
 stim.mrl_prf = cell(param.stim_num,1);
 stim.pos_no_con = cell(param.stim_num,1);
 temp.data_start = 1;
+
+pracstim.stim_text = cell(param.prac_num,1);
+pracstim.file = cell(param.prac_num,1);
+pracstim.stim_id = cell(param.prac_num,1);
+pracstim.mrl_prf_fct = cell(param.prac_num,1);
+
 
 %% Get facts
 stim.fstim_text = cell(param.fact_num,1);
@@ -115,7 +122,60 @@ stim.pos_no_con(temp.data_start:temp.data_end) = {'poscon'};
 
 clear temp
 
+%% Get Practice stimuli.
+cd (pracdir);
+temp.data_start = 1;
+% morals
+temp.files = [dir('*Moral.txt')];
+temp.text = cell(numel(temp.files),1);
+for xx=1:numel(temp.files)
+    temp.data = fopen(temp.files(xx).name, 'r');
+    temp.text{xx} = fgetl(temp.data);
+    fclose('all');
+end
+temp.data_end = temp.data_start + numel(temp.text)-1;
+pracstim.file(temp.data_start:temp.data_end) = fullfile(pracdir, {temp.files.name}');
+pracstim.stim_text(temp.data_start:temp.data_end) = temp.text;
+temp.names = char({temp.files.name}');
+pracstim.stim_id(temp.data_start:temp.data_end) = cellstr(temp.names(:,5:7));
+pracstim.mrl_prf_fct(temp.data_start:temp.data_end) = {'mrl'};
+temp.data_start = temp.data_end+1;
+
+% Preferences
+temp.files = [dir('*Preference.txt')];
+temp.text = cell(numel(temp.files),1);
+for xx=1:numel(temp.files)
+    temp.data = fopen(temp.files(xx).name, 'r');
+    temp.text{xx} = fgetl(temp.data);
+    fclose('all');
+end
+temp.data_end = temp.data_start + numel(temp.text)-1;
+pracstim.file(temp.data_start:temp.data_end) = fullfile(pracdir, {temp.files.name}');
+pracstim.stim_text(temp.data_start:temp.data_end) = temp.text;
+temp.names = char({temp.files.name}');
+pracstim.stim_id(temp.data_start:temp.data_end) = cellstr(temp.names(:,5:7));
+pracstim.mrl_prf_fct(temp.data_start:temp.data_end) = {'prf'};
+temp.data_start = temp.data_end+1;
+
+% Facts
+temp.files = [dir('*Fact.txt')];
+temp.text = cell(numel(temp.files),1);
+for xx=1:numel(temp.files)
+    temp.data = fopen(temp.files(xx).name, 'r');
+    temp.text{xx} = fgetl(temp.data);
+    fclose('all');
+end
+temp.data_end = temp.data_start + numel(temp.text)-1;
+pracstim.file(temp.data_start:temp.data_end) = fullfile(pracdir, {temp.files.name}');
+pracstim.stim_text(temp.data_start:temp.data_end) = temp.text;
+temp.names = char({temp.files.name}');
+pracstim.stim_id(temp.data_start:temp.data_end) = cellstr(temp.names(:,5:7));
+pracstim.mrl_prf_fct(temp.data_start:temp.data_end) = {'fct'};
+
+clear temp
+
 %% Randomize Stimuli.
+
 design.stim_text = cell(param.stim_num/2+param.fact_num,2);
 design.file = cell(param.stim_num/2+param.fact_num,2);
 design.stim_id = cell(param.stim_num/2+param.fact_num,2);
@@ -280,6 +340,30 @@ end
 
 clear temp
 
+%% Randomize Practice Questions
+pracdesign.stim_text = cell(param.prac_num,1);
+pracdesign.file = cell(param.prac_num,1);
+pracdesign.stim_id = cell(param.prac_num,1);
+pracdesign.mrl_prf_fct = cell(param.prac_num,1);
+
+%shuffle
+temp.mrl_loc = find(ismember(pracstim.mrl_prf_fct, 'mrl'));
+temp.prf_loc = find(ismember(pracstim.mrl_prf_fct, 'prf'));
+temp.fct_loc = find(ismember(pracstim.mrl_prf_fct, 'fct'));
+temp.mrl_loc = temp.mrl_loc(randperm(size(temp.mrl_loc,1)));
+temp.prf_loc = temp.prf_loc(randperm(size(temp.prf_loc,1)));
+temp.fct_loc = temp.fct_loc(randperm(size(temp.fct_loc,1)));
+
+%concat, then reshape.
+temp.all_loc = cat(2,temp.mrl_loc, temp.prf_loc, temp.fct_loc);
+temp.all_loc = reshape(temp.all_loc', [numel(temp.all_loc),1]);
+
+% insert into design
+pracdesign.stim_text = pracstim.stim_text(temp.all_loc);
+pracdesign.file = pracstim.file(temp.all_loc);
+pracdesign.stim_id = pracstim.stim_id(temp.all_loc);
+pracdesign.mrl_prf_fct = pracstim.mrl_prf_fct(temp.all_loc);
+
 %% Question Order
 design.q_order = cell(3,1);
 design.q_text = cell(3,1);
@@ -288,13 +372,15 @@ design.q_text(:) = {'About Facts', 'About Morality', 'About Preferences'};
 seed = randperm(size(design.q_order,1));
 design.q_order = design.q_order(seed);
 design.q_text = design.q_text(seed);
+pracdesign.q_order = design.q_order;
+pracdesign.q_text = design.q_text;
 
 %% Save Behavioral File
 cd (behavdir)
 subjID = subjNum;
 param.time_date = datestr(now, 'mm-dd-yyyy_HH-MM');
 assert(isempty(dir(['design_sub-' sprintf('%02d', subjNum) '*'])), 'Subject already exists. Check /behavioral')
-save(['design_sub-' sprintf('%02d', subjNum) '_task-FPMTMS_' 'date-' param.time_date '.mat'], 'subjID', 'stim', 'design', 'param')
+save(['design_sub-' sprintf('%02d', subjNum) '_task-FPMTMS_' 'date-' param.time_date '.mat'], 'subjID', 'stim', 'design', 'param', 'pracstim', 'pracdesign')
 cd (rootdir)
 
 end

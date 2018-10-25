@@ -73,8 +73,7 @@ text.example = 'A circle is round.';
 text.ready = ['Please remember:' ...
     '\n\n\n Rate each item on how much you think it is' ...
     '\n\n', design.q_text{1}, '\n\n', design.q_text{2}, '\n\n and \n\n', design.q_text{3} ...
-    '\n\n\n If you take more than ', num2str(param.max_trial_len), ' seconds to answer then the experiment will advance on its own.' ...
-    '\n\n\n We are now ready to begin stimulation. Please let the experimenter know that you are finished reading the instructions.'];
+    '\n\n\n If you take more than ', num2str(param.max_trial_len), ' seconds to answer then the experiment will advance on its own.'];
 %Text
 text.rating = 'To what degree is this statement...';
 text.rate1 = [design.q_text{1}, '?']; % get About Fact, About Moral, About Preference Rating.
@@ -84,6 +83,7 @@ text.scale =  'Not at all                                            Completely'
 
 text.space_advance = 'Press <SPACE> to advance';
 text.space_confirm = 'Press <SPACE> to confirm';
+text.space_doneTMS = 'When stimulation is finished, press <SPACE> to advance.';
 text.timeout = 'Please answer quickly';
 
 %% Key Setup
@@ -125,261 +125,26 @@ scaleY = yCenter*1.6;
 spaceY = yCenter*1.9;
 
 %% Instructions % 
-DrawFormattedText(window, text.inst1, 'center', textY, 255, param.wrap);
-DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
-Screen('Flip', window);
-WaitSecs(.5);
-while 1 %wait for someone to press 'space'
-    [keyIsDown,secs, keyCode] = KbCheck;
-    if keyCode(key.space)
-        Screen('Flip', window);
-        break
-    end
-end
-
-DrawFormattedText(window, text.inst2, 'center', textY, 255, param.wrap);
-DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
-Screen('Flip', window);
-WaitSecs(.5);
-while 1 %wait for someone to press 'space'
-    [keyIsDown,secs, keyCode] = KbCheck;
-    if keyCode(key.space)
-        Screen('Flip', window);
-        break
-    end
-end
-
-% Example of scenario screen.
-Screen('TextSize', window, param.big);
-DrawFormattedText(window, text.example, 'center', textY, 255, param.wrap); % put text 1/3 up screen
-DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
-Screen('Flip',window, 0, 1);   
-WaitSecs(.5);
-while 1 %wait for someone to press 'space'
-    [keyIsDown,secs, keyCode] = KbCheck;
-    if keyCode(key.space)
-        Screen('Flip', window);
-        break
-    end
-end
-
-DrawFormattedText(window, text.inst3, 'center', textY, 255, param.wrap);
-DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
-Screen('Flip', window);
-WaitSecs(.5);
-while 1 %wait for someone to press 'space'
-    [keyIsDown,secs, keyCode] = KbCheck;
-    if keyCode(key.space)
-        Screen('Flip', window);
-        break
-    end
-end
-
-% Example of trial.
-Screen('TextSize', window, param.big);
-DrawFormattedText(window, text.example, 'center', textY, 255, param.wrap); % put text 1/3 up screen
-DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
-Screen('Flip',window, 0, 1);   
-WaitSecs(.5);
-while 1 %wait for someone to press 'space'
-    [keyIsDown,secs, keyCode] = KbCheck;
-    if keyCode(key.space)
-        Screen('Flip', window);
-        break
-    end
-end
-
-% positions
-squareX1 = xCenter;
-squareX2 = xCenter;
-squareX3 = xCenter;
-squareY1 = yCenter;
-squareY2 = yCenter*1.2;
-squareY3 = yCenter*1.4;
-
-squareSelect = 1; % 1 = Fact, 2 = Preference, 3 = Moral
-trial.ratestart = GetSecs;
-while squareSelect < 4
-    % Check the keyboard to see if a button has been pressed
-    [keyIsDown,secs, keyCode] = KbCheck;
-
-    Screen('TextSize', window, param.small);
-
-    %this draws the text
-    Screen('TextSize', window, param.big);
-    DrawFormattedText(window, text.example, 'center', textY, 255, param.wrap); 
-    DrawFormattedText(window, text.rating, 'center', rateY, 255, param.wrap);
-    DrawFormattedText(window, text.scale, 'centerblock', scaleY, 255);
-    % ratings
-    DrawFormattedText(window, text.rate1, screenXpixels*(1/14), squareY1, 255);
-    DrawFormattedText(window, text.rate2, screenXpixels*(1/14), squareY2, 255);
-    DrawFormattedText(window, text.rate3, screenXpixels*(1/14), squareY3, 255);
-    % confirm
-    DrawFormattedText(window, text.space_confirm,'center', spaceY, 255);
-
-    % We set bounds to make sure our square stays within rating line
-    if squareX1 < screenXpixels*(1/3)
-        squareX1 = screenXpixels*(1/3);
-    elseif squareX1 > screenXpixels*(2/3)
-        squareX1 = screenXpixels*(2/3);
-    end
-
-    if squareX2 < screenXpixels*(1/3)
-        squareX2 = screenXpixels*(1/3);
-    elseif squareX2 > screenXpixels*(2/3)
-        squareX2 = screenXpixels*(2/3);
-    end
-
-    if squareX3 < screenXpixels*(1/3)
-        squareX3 = screenXpixels*(1/3);
-    elseif squareX3 > screenXpixels*(2/3)
-        squareX3 = screenXpixels*(2/3);
-    end
-    
-    %this draws the line
-    Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY1, screenXpixels*(2/3), squareY1, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY1+10, screenXpixels*(1/3), squareY1-10, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY1+10, screenXpixels*(2/3), squareY1-10, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY1+10, screenXpixels*(1/2), squareY1-10, 5);
-   
-    Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY2, screenXpixels*(2/3), squareY2, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY2+10, screenXpixels*(1/3), squareY2-10, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY2+10, screenXpixels*(2/3), squareY2-10, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY2+10, screenXpixels*(1/2), squareY2-10, 5);
-    
-    Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY3, screenXpixels*(2/3), squareY3, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY3+10, screenXpixels*(1/3), squareY3-10, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY3+10, screenXpixels*(2/3), squareY3-10, 5);
-    Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY3+10, screenXpixels*(1/2), squareY3-10, 5);
-    
-   % This draws the cursor
-    centeredRectF = CenterRectOnPointd(baseRect, squareX1, squareY1);
-    centeredRectP = CenterRectOnPointd(baseRect, squareX2, squareY2);
-    centeredRectM = CenterRectOnPointd(baseRect, squareX3, squareY3);
-    
-    % select answer
-    if squareSelect == 1
-        Screen('FillRect', window, 127.5, centeredRectF);
-        Screen('FillRect', window, 255, centeredRectP);
-        Screen('FillRect', window, 255, centeredRectM);
-    elseif squareSelect == 2
-        Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
-        Screen('FillRect', window, 255, centeredRectF);
-        Screen('FillRect', window, 127.5, centeredRectP);
-        Screen('FillRect', window, 255, centeredRectM);
-    elseif squareSelect == 3
-        Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
-        Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5);     
-        Screen('FillRect', window, 255, centeredRectF);
-        Screen('FillRect', window, 255, centeredRectP);
-        Screen('FillRect', window, 127.5, centeredRectM);
-    end
-    Screen('Flip', window);
-
-    % Depending on the button press, move ths position of the square
-%     if keyCode(key.down)
-%         squareSelect = squareSelect + 1;
-%         WaitSecs(.2);
-%         if squareSelect > 3 % go no higher than 3 (moral)
-%             squareSelect = 3;
-%         end
-%     elseif keyCode(key.up)
-%         squareSelect = squareSelect - 1;
-%         WaitSecs(.2);
-%         if squareSelect < 1 % go no lower than 1 (fact)
-%             squareSelect = 1;
-%         end
-     if keyCode(key.left)
-%         WaitSecs(.005);
-        if squareSelect == 1
-            squareX1 = squareX1 - pixelsPerPress;
-        elseif squareSelect == 2
-            squareX2 = squareX2 - pixelsPerPress;
-        elseif squareSelect == 3
-            squareX3 = squareX3 - pixelsPerPress;
-        end
-     elseif keyCode(key.right)
-%         WaitSecs(.005);
-        if squareSelect == 1
-            squareX1 = squareX1 + pixelsPerPress;
-        elseif squareSelect == 2
-            squareX2 = squareX2 + pixelsPerPress;
-        elseif squareSelect == 3
-            squareX3 = squareX3 + pixelsPerPress;
-        end
-     elseif keyCode(key.space) && (GetSecs - trial.ratestart > .5)
-        % text
-        Screen('TextSize', window, param.big);
-        DrawFormattedText(window, text.example, 'center', textY, 255, param.wrap); % put text 1/3 up screen
-        DrawFormattedText(window, text.rating, 'center', rateY, 255, param.wrap);
-        DrawFormattedText(window, text.scale, 'centerblock', scaleY, 255);
-        % ratings
-        DrawFormattedText(window, text.rate1, screenXpixels*(1/14), squareY1, 255);
-        DrawFormattedText(window, text.rate2, screenXpixels*(1/14), squareY2, 255);
-        DrawFormattedText(window, text.rate3, screenXpixels*(1/14), squareY3, 255);
-        % lines
-        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY1, screenXpixels*(2/3), squareY1, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY1+10, screenXpixels*(1/3), squareY1-10, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY1+10, screenXpixels*(2/3), squareY1-10, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY1+10, screenXpixels*(1/2), squareY1-10, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY2, screenXpixels*(2/3), squareY2, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY2+10, screenXpixels*(1/3), squareY2-10, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY2+10, screenXpixels*(2/3), squareY2-10, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY2+10, screenXpixels*(1/2), squareY2-10, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY3, screenXpixels*(2/3), squareY3, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(1/3), squareY3+10, screenXpixels*(1/3), squareY3-10, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(2/3), squareY3+10, screenXpixels*(2/3), squareY3-10, 5);
-        Screen('DrawLine', window, 255, screenXpixels*(1/2), squareY3+10, screenXpixels*(1/2), squareY3-10, 5);
-        % cursor
-        centeredRectF = CenterRectOnPointd(baseRect, squareX1, squareY1);
-        centeredRectP = CenterRectOnPointd(baseRect, squareX2, squareY2);
-        centeredRectM = CenterRectOnPointd(baseRect, squareX3, squareY3);
-        Screen('FillRect', window, 255, centeredRectF);
-        Screen('FillRect', window, 255, centeredRectP);
-        Screen('FillRect', window, 255, centeredRectM);
-        % space confirm text.
-        DrawFormattedText(window, text.space_confirm,'center', spaceY, 255);
-        % draw confirmation border
-        if squareSelect == 1
-            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
-            Screen('Flip', window);            
-        elseif squareSelect == 2
-            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
-            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5); 
-            Screen('Flip', window);  
-        elseif squareSelect == 3
-            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY1 - 20, screenXpixels*(2/3)+20, squareY1 + 20], 5); 
-            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY2 - 20, screenXpixels*(2/3)+20, squareY2 + 20], 5); 
-            Screen('FrameRect', window, 255, [screenXpixels*(1/3)-20, squareY3 - 20, screenXpixels*(2/3)+20, squareY3 + 20], 5); 
-            Screen('Flip', window);  
-        end
-        WaitSecs(.25)
-        squareSelect = squareSelect + 1;
-     end
-end
-
-Screen('Flip', window);
-DrawFormattedText(window, text.inst4, 'center', textY, 255, param.wrap);
-DrawFormattedText(window, text.space_advance,'center', spaceY, 255);
-Screen('Flip', window);
-WaitSecs(.5);
-while 1 %wait for someone to press 'space'
-    [keyIsDown,secs, keyCode] = KbCheck;
-    if keyCode(key.space)
-        Screen('Flip', window);
-        break
-    end
-end
-
 % Ready screen.
 DrawFormattedText(window, text.ready, 'center', 'center', 255, param.wrap);
 Screen('Flip',window);
+while 1 %wait for someone to press 'space'
+    [keyIsDown,secs, keyCode] = KbCheck;
+    if keyCode(key.space)
+        Screen('Flip', window);
+        break
+    end
+end
 
+DrawFormattedText(window, text.ready, 'center', 'center', 255, param.wrap);
+DrawFormattedText(window, text.space_doneTMS,'center', spaceY, 255);
+Screen('Flip',window);
+WaitSecs(2);
 %% Trigger
-while 1 %wait for someone to press '='
-    FlushEvents;
-    trig = GetChar;
-    if trig == '='
+while 1 %wait for someone to press 'space'
+    [keyIsDown,secs, keyCode] = KbCheck;
+    if keyCode(key.space)
+        Screen('Flip', window);
         runStart = GetSecs; %experiment start time.
         break
     end
