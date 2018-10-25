@@ -5,7 +5,7 @@ Screen('Preference','VisualDebugLevel', 0);
 Screen('Preference','Verbosity', 0);
 rng('shuffle')
 %% Directories
-rootdir = '~/projects/FPM_TMS/experiment';
+rootdir = '~/Desktop/FPM_TMS/experiment';
 behavdir = fullfile(rootdir, 'behavioral');
 % stimdir = fullfile(rootdir, 'stimuli');
 outputdir = fullfile(rootdir, 'output');

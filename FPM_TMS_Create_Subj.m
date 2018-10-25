@@ -3,7 +3,7 @@ rng('shuffle')
 addpath(genpath(cd))
 
 %% Parameters
-rootdir = '~/projects/FPM_TMS/experiment';
+rootdir = '~/Desktop/FPM_TMS/experiment';
 behavdir = fullfile(rootdir, 'behavioral');
 stimdir = fullfile(rootdir, 'stimuli');
 factdir = fullfile(rootdir, 'stim_facts');
